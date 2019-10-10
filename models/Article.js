@@ -1,37 +1,34 @@
+// Import mongoose nmp package into a variable:
 const mongoose = require("mongoose");
 
-// Save a reference to the Schema constructor
+// Save a reference to the Schema constructor:
 const Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
+// Using the Schema constructor, create a new ArticleSchema object:
 const ArticleSchema = new Schema({
-  // `title` is required and of type String
   title: {
     type: String,
     required: true
   },
-  // `link` is required and of type String
   link: {
     type: String,
     required: true
   },
-
-  // `summary` is required and of type String
   summary: {
     type: String,
     required: true
   },
-  // `note` is an object that stores a Note id
-  // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Article with an associated Note
-  note: {
+  comment: {
     type: Schema.Types.ObjectId,
-    ref: "Note"
+    ref: "Comment"
+  },
+  imageSrc: {
+    type: String,
+    required: true
   }
 });
 
-// This creates our model from the above schema, using mongoose's model method
+// This creates our model from the above schema, using mongoose's model method:
 const Article = mongoose.model("Article", ArticleSchema);
 
 // Export the Article model

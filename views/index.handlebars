@@ -1,1 +1,92 @@
-<h1>Cats!</h1>
+<!-- Main Section with the entire <body>  -->
+
+<div class="container">
+    <!-- Section for header/jumbotron & form for user input  -->
+    <div class="jumbotron" style="height:auto;min-height:300px;">
+        <div class="col-md-4">
+            <h1 class="text-center">Eat Da Burger</h1>
+
+        </div>
+        <div class="col-md-6 form-content">
+            <form class="form-horizontal" role="form">
+                <div class="form-group text-center">
+                    <h2 class="text-center">
+                        Type your burger and.... devour it!
+                    </h2>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label for="hamburger">Witch one?</label>
+                        <input type="text" class="form-control" id="hamburger" placeholder="Burger name...">
+                    </div>
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                        Ok!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Section for both eaten & uneaten burgers  -->
+    <div class="row">
+        <!-- Section for uneaten burgers  -->
+        <div class="col-4 text-center">
+            <div class="header text-center">
+                <h4>Ready to eat it!</h4>
+            </div>
+            {{#each burgers}}
+            {{#unless devoured}}
+            <div class="card-deck mb-4 text-center" style="width:200px">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h5 class="my-0 font-weight-normal">Here we go!</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title">{{burger_name}}</h4>
+                            <button type="button" class="devoured btn btn-lg btn-block btn-outline-secondary"
+                                data-id="{{id}}" data-newDevoured="{{devoured}}">It was delicious!</button>
+                            <button type="button" class="btn btn-lg btn-block btn-outline-secondary">Nah!
+                                Thanks!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+
+        <!-- Section for eaten burgers  -->
+        <div class="col-4 text-center">
+            <div class="header text-center">
+                <h4>Hummm! It was delicious!</h4>
+            </div>
+            {{#each burgers}}
+            {{#if devoured}}
+            <div class="card-deck mb-4 text-center" style="width:200px">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h5 class="my-0 font-weight-normal">Done!</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title">{{burger_name}}</h4>
+                            <button type="button" class="delete btn btn-lg btn-block btn-outline-secondary"
+                                data-id="{{id}}">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+
+
+        <!-- Section for footer and link for the code on Github  -->
+        <footer class="footer fixed-bottom mt-3">
+            <a href="https://github.com/EliGorniak/burger-app"><button class="btn btn-secondary">
+                    <span class="fa fa-github"></span> Code in Github
+                </button></a>
+        </footer>
+    </div>
+    </body>
